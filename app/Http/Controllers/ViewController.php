@@ -16,7 +16,7 @@ class ViewController extends Controller
 
 			'data' => [
 
-				'judul' => '',
+				'judul' => 'Muebel',
 				'diskripsi' => '',
 				'nama_toko' => '',
 				'telp_toko' => '',

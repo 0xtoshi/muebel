@@ -18,7 +18,7 @@ class MasterBarang extends Migration
             $table->string('nama');
             $table->string('harga');
             $table->string('diskon');
-            $table->string('kategori');
+            $table->integer('kategori')->references('id')->on('kategori_barang');
             $table->string('merk');
             $table->string('ukuran');
             $table->string('keterangan');

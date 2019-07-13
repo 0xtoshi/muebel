@@ -34,6 +34,6 @@ class Keranjang extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('info_web');
+        Schema::dropIfExists('keranjang');
     }
 }
