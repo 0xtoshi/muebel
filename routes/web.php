@@ -24,3 +24,7 @@ Route::post('/pelanggan/masuk','Pelanggan@masuk');
 
 
 Route::get('/admin/genesis','AdminController@genesis_admin');
+
+
+Route::get('/akun/masuk','ViewController@UserLogin');
+Route::get('/akun/daftar','ViewController@UserRegister');

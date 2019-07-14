@@ -26,7 +26,48 @@ class ViewController extends Controller
 
 		]);
 
+
 	}
+
+
+	public function UserLogin()
+	{
+
+		return view('/normal/login',[
+
+			'data' => [
+
+				'judul' => 'Muebel',
+				'diskripsi' => '',
+				'nama_toko' => '',
+				'telp_toko' => '',
+
+
+			],
+
+		]);
+	}
+
+
+	public function UserRegister()
+	{
+
+		return view('/normal/register',[
+
+			'data' => [
+
+				'judul' => 'Muebel',
+				'diskripsi' => '',
+				'nama_toko' => '',
+				'telp_toko' => '',
+
+
+			],
+
+		]);
+	}
+
+
 
 
 }
