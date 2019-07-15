@@ -67,6 +67,24 @@ class ViewController extends Controller
 		]);
 	}
 
+	public function UserDashboard()
+	{
+
+		return view('/normal/dashboard',[
+
+			'data' => [
+
+				'judul' => 'Muebel',
+				'diskripsi' => '',
+				'nama_toko' => '',
+				'telp_toko' => '',
+
+
+			],
+
+		]);
+	}
+
 
 
 

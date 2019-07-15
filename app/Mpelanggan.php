@@ -10,7 +10,7 @@ class MPelanggan extends Model
 {
         protected $table = 'pelanggan';
 
-        protected $fillable = ['nama', 'alamat','kota','propinsi','kodepos','nomor_telepon','password','email'];
+        protected $fillable = ['nama', 'alamat','kota','provinsi','kodepos','nomor_telepon','password','email'];
 
         public function setPasswordAttribute($value)
 		{

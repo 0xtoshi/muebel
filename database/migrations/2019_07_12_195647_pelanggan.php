@@ -18,7 +18,7 @@ class Pelanggan extends Migration
             $table->string('nama');
             $table->string('alamat');
             $table->string('kota');
-            $table->string('propinsi');
+            $table->string('provinsi');
             $table->string('kodepos');
             $table->string('nomor_telepon');
             $table->string('password');

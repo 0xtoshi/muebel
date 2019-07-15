@@ -16,23 +16,23 @@
 
   <style type="text/css">
     
-   .my-form .row
-{
-    margin-left: 0;
-    margin-right: 0;
-}
+       .my-form .row
+    {
+        margin-left: 0;
+        margin-right: 0;
+    }
 
-.login-form
-{
-    padding-top: 5rem;
-    padding-bottom: 29rem;
-}
+    .login-form
+    {
+        padding-top: 5rem;
+        padding-bottom: 29rem;
+    }
 
-.login-form .row
-{
-    margin-left: 0;
-    margin-right: 0;
-}
+    .login-form .row
+    {
+        margin-left: 0;
+        margin-right: 0;
+    }
   </style>
 
 
@@ -81,11 +81,13 @@
                 <div class="card">
                     <div class="card-header">Masuk Sebagai Pelanggan</div>
                     <div class="card-body">
-                        <form action="" method="">
+
+                      <div id="alert"></div>
+                        <form id="login" action="" method="">
                             <div class="form-group row">
                                 <label for="email_address" class="col-md-4 col-form-label text-md-right">Alamat E-Mail</label>
                                 <div class="col-md-6">
-                                    <input type="text" id="email_address" class="form-control" name="email-address" required autofocus>
+                                    <input type="text" id="email_address" class="form-control" name="email" required autofocus>
                                 </div>
                             </div>
 
@@ -126,6 +128,49 @@
   <!-- Bootstrap core JavaScript -->
   <script src="/vendor/jquery/jquery.min.js"></script>
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript">
+    
+  $('#login').submit(function(e){
+
+  e.preventDefault();
+  var form = $('#login').serialize();
+
+  $.ajax({
+
+    url : '/pelanggan/masuk',
+    type : 'POST',
+    data : form,
+    success : function(data){
+
+      var decode = data;
+      if( decode.success ){
+
+        $('div[id=alert]').html(`
+          <div class="alert alert-success" role="alert">
+          `+data.messages+`
+          </div>`);
+
+      }else{
+        
+        $('div[id=alert]').html(`
+          <div class="alert alert-danger" role="alert">
+          `+data.messages+`
+          </div>`);
+      }
+
+    },
+    error : function()
+    {
+
+      console.log(data);
+
+    }
+
+
+  });
+
+  });
+  </script>
 
 </body>
 

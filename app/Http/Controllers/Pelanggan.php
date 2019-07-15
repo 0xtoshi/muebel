@@ -37,10 +37,10 @@ class Pelanggan extends Controller
 			'nama' => 'required|max:255|min:5',
 			'alamat' => 'required|max:255|min:5',
 			'kota' => 'required|max:255|min:3',
-			'propinsi' => 'required|max:255|min:3',
-			'kodepos' => 'required|max:6|min:5',
-			'nomor_telepon' => 'required|max:13|min:10',
-			'password' => 'required|max:255|min:6',
+			'provinsi' => 'required|max:255|min:3',
+			'kodepos' => 'required|digits_between:5,6',
+			'nomor_telepon' => 'required|digits_between:10,13',
+			'password' => 'required|min:6|max:255',
 			'email' => 'required|max:255|email|unique:pelanggan|min:6',
 
 
@@ -55,7 +55,7 @@ class Pelanggan extends Controller
         }else{
 
 
-		MPelanggan::create($request->only(['nama', 'alamat','kota','propinsi','kodepos','nomor_telepon','password','email']));
+		MPelanggan::create($request->only(['nama', 'alamat','kota','provinsi','kodepos','nomor_telepon','password','email']));
 
 		return [ 'success' => true, 'messages' => 'Akun Berhasil dibuat' ];
 

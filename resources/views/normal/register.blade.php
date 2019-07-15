@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Login Ke Akun</title>
+  <title>Pendaftaran Pelanggan {{ $data['judul'] }}</title>
 
   <!-- Bootstrap core CSS -->
   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -24,7 +24,7 @@ html{
 .login-form
 {
     padding-top: 5rem;
-    padding-bottom: 29rem;
+    padding-bottom: 4rem;
 }
 
 
@@ -74,69 +74,79 @@ html{
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Masuk Sebagai Pelanggan</div>
+                    <div class="card-header">Formulir Pendaftaran Pelanggan</div>
                     <div class="card-body">
 
-                     <form class="form-horizontal" role="form">
+                     <div id="alert"></div> 
+
+                     <form method="" action="" id="daftar" class="form-horizontal" role="form">
                       <div class="row">
-                          <div class="col-lg-6">
+                          <div class="col-lg-12">
                               <!-- Text input-->
                               <div class="form-group">
-                                  <label class="control-label" for="textinput">Line 1</label>
-                                  <input type="text" placeholder="Address Line 1" class="form-control">
+                                  <label class="control-label" for="textinput">Nama Lengkap</label>
+                                  <input type="text" placeholder="Nama Lengkap" name="nama" class="form-control">
                               </div>
                               <!-- Text input-->
                               <div class="form-group">
-                                  <label class="control-label" for="textinput">Line 2</label>
-                                  <input type="text" placeholder="Address Line 2" class="form-control">
+                                  <label class="control-label" for="textinput">Alamat Lengkap</label>
+                                  <input type="text" placeholder="Alamat Lengkap" name="alamat" class="form-control">
                               </div>
 
                               <!-- Text input-->
                               <div class="form-group">
-                                  <label class="control-label" for="textinput">City</label>
-                                  <input type="text" placeholder="City" class="form-control">
+                                  <label class="control-label" for="textinput">Kota / Kabupaten</label>
+                                  <input type="text" placeholder="Kota / Kabupaten" name="kota" class="form-control">
                               </div>
                               <!-- Text input-->
                               <div class="row">
                                   <div class="col-lg-6">
                                       <div class="form-group">
-                                          <label class="control-label" for="textinput">State</label>
-                                          <input type="text" placeholder="State" class="form-control">
+                                          <label class="control-label" for="textinput">Provinsi</label>
+                                          <input type="text" placeholder="Provinsi" name="provinsi" class="form-control">
                                       </div>
                                   </div>
                                   <div class="col-lg-6">
                                       <div class="form-group">
-                                          <label class="control-label" for="textinput">Postcode</label>
-                                          <input type="text" placeholder="Post Code" class="form-control">
+                                          <label class="control-label" for="textinput">Kode Pos</label>
+                                          <input type="number" placeholder="Post Code" name="kodepos" class="form-control">
                                       </div>
                                   </div>
                               </div>
 
-                              <div class="form-group">
-                                  <label class="control-label" for="textinput">Country</label>
-                                  <input type="text" placeholder="Country" class="form-control">
+                              <div class="row">
+                                  <div class="col-lg-6">
+                                      <div class="form-group">
+                                          <label class="control-label" for="textinput">Nomor Telepon</label>
+                                          <input type="number" placeholder="Nomor Telepon" name="nomor_telepon" class="form-control">
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-6">
+                                      <div class="form-group">
+                                          <label class="control-label" for="textinput">Email</label>
+                                          <input type="text" placeholder="Email" name="email" class="form-control">
+                                      </div>
+                                  </div>
                               </div>
+
+                              <div class="row">
+                                  <div class="col-lg-6">
+                                      <div class="form-group">
+                                          <label class="control-label" for="textinput">Password</label>
+                                          <input type="password" placeholder="Password" name="password" class="form-control">
+                                      </div>
+                                  </div>
+                                  
+                              </div>
+
                           </div>
-                          <div class="col-lg-6">
-                              <div class="form-group">
-                                  <label class="control-label">Email to:</label>
-                                  <input type="text" class="form-control" placeholder="abc@gmail.com" />
-                              </div>
-                              <div class="form-group">
-                                  <label class="control-label">Subject:</label>
-                                  <input type="text" class="form-control" placeholder="Leave" />
-                              </div>
-                              <div class="form-group">
-                                  <label class="control-label">Message:</label>
-                                  <textarea rows="8" class="form-control"></textarea>
-                              </div>
-                          </div>
+                          
                       </div>
 
                       <div class="form-group">
-                          <div class="text-center">
+                          <div>
                               
-                              <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
+                              <button type="submit" class="btn btn-lg btn-primary"><i class="fa fa-save"></i> Daftar</button>
                           </div>
                       </div>
                   </form>
@@ -161,6 +171,50 @@ html{
   <!-- Bootstrap core JavaScript -->
   <script src="/vendor/jquery/jquery.min.js"></script>
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript">
+    
+  $('#daftar').submit(function(e){
+
+  e.preventDefault();
+  var form = $('#daftar').serialize();
+
+  $.ajax({
+
+    url : '/pelanggan/daftar',
+    type : 'POST',
+    data : form,
+    success : function(data){
+
+      var decode = data;
+      if( decode.success ){
+
+        $('div[id=alert]').html(`
+          <div class="alert alert-success" role="alert">
+          `+data.messages+`
+          </div>`);
+
+      }else{
+        
+        $('div[id=alert]').html(`
+          <div class="alert alert-danger" role="alert">
+          `+data.messages+`
+          </div>`);
+      }
+
+    },
+    error : function()
+    {
+
+      console.log(data);
+
+    }
+
+
+  });
+
+  });
+
+  </script>
 
 </body>
 
